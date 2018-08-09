@@ -5,9 +5,6 @@ teaching: 10
 exercises: 10
 questions:
   - How can I undo things?
-objectives:
-  - Learn to undo changes safely
-  - See when undone changes are permanently deleted and when they can be retrieved
 ---
 
 ## Undoing things
@@ -23,13 +20,14 @@ objectives:
 
 ### Reverting commits
 
-- Imagine we made a few commits.
-- We realize that the latest commit `f960dd3` was a mistake and we wish to undo it:
+- Imagine we made a couple of commits.
+- We realize that commit `f960dd3` was a mistake and we wish to undo it:
 
 ```
 $ git log --oneline
 
-f960dd3 (HEAD -> master) not sure this is a good idea
+52e5998 (HEAD -> master) another tasty ingredient
+f960dd3 not sure this is a good idea
 40fbb90 draft a readme
 dd4472c we should not forget to enjoy
 2bb9bb4 add half an onion
@@ -49,6 +47,7 @@ The old commit remains in the history:
 $ git log --oneline
 
 d62ad3e (HEAD -> master) Revert "not sure this is a good idea"
+52e5998 another tasty ingredient
 f960dd3 not sure this is a good idea
 40fbb90 draft a readme
 dd4472c we should not forget to enjoy
@@ -56,7 +55,7 @@ dd4472c we should not forget to enjoy
 2d79e7e adding ingredients and instructions
 ```
 
-### Exercise: Revert a commit
+Exercise:
 
 - Create a commit.
 - Revert the commit with `git revert`.
@@ -86,14 +85,14 @@ This means that we never use this command on commits that we have shared with ot
 This is a command that **permanently deletes** changes
 that were unstaged/uncommitted!
 
-### Exercise: Modify without staging
+Exercise: Modify without staging
 
 - Make a silly change to a project, do not stage it or commit it.
 - Inspect the change with `git status` and `git diff`.
 - Now undo the change with `git checkout <file>`.
 - Verify that the change is gone with `git status` and `git diff`.
 
-### Exercise: Modify after staging
+Exercise: Modify after staging
 
 - Make a reasonable change to a project, stage it.
 - Make a silly change after you have staged the reasonable change.
